@@ -1,5 +1,5 @@
 class Problema {}
 
-class UsuarioNoRegistrado extends Problema {}
+class RazaNoRegistrada extends Problema {}
 
-class VersionIncorrectaXml extends Problema {}
+class FormatoIncorrectoJSon extends Problema {}
