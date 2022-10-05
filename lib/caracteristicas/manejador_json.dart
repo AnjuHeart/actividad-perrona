@@ -1,12 +1,16 @@
+import 'dart:convert';
+
 class Model {
-  final String raza;
-  final List<String> subRazas;
+  final Map<String, dynamic> objetosJson;
 
-  Model._(this.raza, this.subRazas);
+  Model._(this.objetosJson);
 
-  factory Model.fromJson({required dynamic json}) {
-    String razaVerificada = "";
-    List<String> subRazasVerificadas = [];
-    return Model._(razaVerificada, subRazasVerificadas);
+  factory Model.fromJson({required String jsonString}) {
+    JsonDecoder decoder = const JsonDecoder();
+
+    final Map<String, dynamic> jsonObject = decoder.convert(jsonString);
+
+    final Map<String, dynamic> message = jsonObject['message'];
+    return Model._(message);
   }
 }
