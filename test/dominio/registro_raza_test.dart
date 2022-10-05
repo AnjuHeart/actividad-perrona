@@ -11,13 +11,13 @@ void main() {
         propuestaRaza: "razaEjemplo2", propuestaSubRazas: []);
 
     test('CheckRegistroRaza', () {
-      expect(registro.propuestaRaza, equals("razaejemplo"));
+      expect(registro.nombreRaza, equals("razaejemplo"));
     });
     test('CheckSubRazas', () {
-      expect(registro.propuestaSubRazas.contains("subRaza1"), true);
+      expect(registro.subRazas.contains("subRaza1"), true);
     });
     test('Check Registro sin sub raza', () {
-      expect(registro.propuestaSubRazas.isEmpty(), true);
+      expect(registroSinSubRaza.subRazas.isEmpty, true);
     });
   });
 }
