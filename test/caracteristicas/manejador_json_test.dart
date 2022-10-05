@@ -39,4 +39,34 @@ void main() {
       expect(bandera, equals(true));
     });
   });
+  group('Pruebas con verificador de nombre en json', () {
+    String json =
+        '''
+        {
+          "message": {
+            "akita": [],
+            "appenzeller": [],
+            "bulldog": [
+                "boston",
+                "english",
+                "french"
+            ],
+            "australian": [
+                "shepherd"
+            ]
+          },
+          "status": "success"
+        }
+        ''';
+    final claseRaza = Model.fromJson(jsonString: json);
+    test('El manejador regresa registro si el nombre existe ', () {
+      final elemento = claseRaza.jsonContieneRaza("akita");
+      expect(elemento.isRight(), true);
+    });
+
+    test('El manejador regresa problema si el nombre no existe ', () {
+      final elemento = claseRaza.jsonContieneRaza("cualquiercosa");
+      expect(elemento.isRight(), false);
+    });
+  });
 }

@@ -1,3 +1,4 @@
+import 'package:actividad_perrona/caracteristicas/manejador_json.dart';
 import 'package:actividad_perrona/dominio/problemas.dart';
 import 'package:actividad_perrona/dominio/registro_raza.dart';
 import 'package:actividad_perrona/dominio/variable_raza.dart';
@@ -8,12 +9,32 @@ abstract class RepositorioVerificacion {
 }
 
 class RepositorioPruebasVerificacion extends RepositorioVerificacion {
-  Either<Problema, RegistroRaza> obtenerRegistroRazaDesdeJSon(dynamic json) {
+  Either<Problema, RegistroRaza> obtenerRegistroRazaDesdeJSon(
+      String nombreRaza) {
     return Left(RazaNoRegistrada());
   }
 
   @override
   Either<Problema, RegistroRaza> obtenerRegistroRaza(Raza raza) {
+    const String jSonEjemplo = '''
+        {
+          "message": {
+            "akita": [],
+            "appenzeller": [],
+            "bulldog": [
+                "boston",
+                "english",
+                "french"
+            ],
+            "australian": [
+                "shepherd"
+            ]
+          },
+          "status": "success"
+        }
+        ''';
+    final elementosJson = Model.fromJson(jsonString: jSonEjemplo);
+    return elementosJson.jsonContieneRaza(raza.valor);
     throw UnimplementedError();
   }
 }
