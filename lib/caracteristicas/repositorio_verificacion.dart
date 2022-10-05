@@ -3,6 +3,7 @@ import 'package:actividad_perrona/dominio/problemas.dart';
 import 'package:actividad_perrona/dominio/registro_raza.dart';
 import 'package:actividad_perrona/dominio/variable_raza.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:test/expect.dart';
 
 abstract class RepositorioVerificacion {
   Either<Problema, RegistroRaza> obtenerRegistroRaza(Raza raza);
@@ -28,8 +29,11 @@ class RepositorioPruebasVerificacion extends RepositorioVerificacion {
           "status": "success"
         }
         ''';
-
-    final elementosJson = Model.fromJson(jsonString: jSonEjemplo);
-    return elementosJson.jsonContieneRaza(raza.valor);
+    try {
+      final elementosJson = Model.fromJson(jsonString: jSonEjemplo);
+      return elementosJson.jsonContieneRaza(raza.valor);
+    } on Problema catch (e) {
+      return Left(e);
+    }
   }
 }
