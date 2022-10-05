@@ -14,10 +14,25 @@ void main() {
       expect(registro.nombreRaza, equals("razaejemplo"));
     });
     test('CheckSubRazas', () {
-      expect(registro.subRazas.contains("subRaza1"), true);
+      registro.subRazas.match(
+        (l) {
+          expect(l.isEmpty, equals(true));
+        },
+        (r) {
+          expect(r.contains("subRaza1"), equals(true));
+          expect(r.contains("subRaza3"), equals(false));
+        },
+      );
     });
     test('Check Registro sin sub raza', () {
-      expect(registroSinSubRaza.subRazas.isEmpty, true);
+      registroSinSubRaza.subRazas.match(
+        (l) {
+          expect(l.isEmpty, false);
+        },
+        (r) {
+          expect(r.isEmpty, equals(true));
+        },
+      );
     });
   });
 }
