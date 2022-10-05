@@ -1,3 +1,4 @@
+import 'package:actividad_perrona/dominio/problemas.dart';
 import 'package:test/test.dart';
 import 'package:actividad_perrona/caracteristicas/manejador_json.dart';
 
@@ -67,6 +68,33 @@ void main() {
     test('El manejador regresa problema si el nombre no existe ', () {
       final elemento = claseRaza.jsonContieneRaza("cualquiercosa");
       expect(elemento.isRight(), false);
+    });
+  });
+  group("Pruebas con json en mal estado", () {
+    String json =
+        '''
+        {
+          "message": {
+            "akita": [],
+            "appenzeller": [],
+            "bulldog": [
+                "boston",
+                "english",
+                "french"
+            ],
+            "australian": [
+                "shepherd"
+            ]
+          },
+          "status": "failure"
+        }
+        ''';
+    test("El modelo devuelve error", () {
+      try {
+        final claseRaza = Model.fromJson(jsonString: json);
+      } catch (e) {
+        expect(e, isA<ProblemaFormatoJson>());
+      }
     });
   });
 }

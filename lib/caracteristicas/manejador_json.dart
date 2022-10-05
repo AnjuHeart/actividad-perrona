@@ -14,6 +14,9 @@ class Model {
     final Map<String, dynamic> jsonObject = decoder.convert(jsonString);
 
     final Map<String, dynamic> message = jsonObject['message'];
+    if (jsonObject["status"] != "success") {
+      throw ProblemaFormatoJson();
+    }
     return Model._(message);
   }
 

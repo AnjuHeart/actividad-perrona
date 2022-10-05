@@ -9,11 +9,6 @@ abstract class RepositorioVerificacion {
 }
 
 class RepositorioPruebasVerificacion extends RepositorioVerificacion {
-  Either<Problema, RegistroRaza> obtenerRegistroRazaDesdeJSon(
-      String nombreRaza) {
-    return Left(RazaNoRegistrada());
-  }
-
   @override
   Either<Problema, RegistroRaza> obtenerRegistroRaza(Raza raza) {
     const String jSonEjemplo = '''
@@ -33,8 +28,8 @@ class RepositorioPruebasVerificacion extends RepositorioVerificacion {
           "status": "success"
         }
         ''';
+
     final elementosJson = Model.fromJson(jsonString: jSonEjemplo);
     return elementosJson.jsonContieneRaza(raza.valor);
-    throw UnimplementedError();
   }
 }
