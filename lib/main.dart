@@ -2,6 +2,7 @@ import 'package:actividad_perrona/caracteristicas/verificacion/bloc.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_mostrando_confirmado.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_mostrando_no_encontrada.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_solicitud.dart';
+import 'package:actividad_perrona/caracteristicas/vistas/vista_solicitud_actualizacion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_creandose.dart';
@@ -50,6 +51,9 @@ class Aplicacion extends StatelessWidget {
           if (estado is MostrandoRazaNoConfirmada) {
             return VistaMostrandoRazaNoEncontrada(
                 raza: estado.nombreNoConfirmado);
+          }
+          if (estado is MostrandoSolicitudActualizacion) {
+            return const VistaSolicitudActualizacion();
           }
           return const Center(child: Text("No hay soporte para esta acción"));
         }),
