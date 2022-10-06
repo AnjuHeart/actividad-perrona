@@ -1,4 +1,6 @@
+import 'package:actividad_perrona/caracteristicas/verificacion/bloc.dart';
 import 'package:actividad_perrona/dominio/registro_raza.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class VistaMostrandoRazaConfirmada extends StatelessWidget {
@@ -8,6 +10,7 @@ class VistaMostrandoRazaConfirmada extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("Se encontró la raza: ${registro.nombreRaza}"),
           registro.subRazas.match((l) {
@@ -17,8 +20,14 @@ class VistaMostrandoRazaConfirmada extends StatelessWidget {
             r.forEach((element) {
               todasLasSubRazas += "$element\n";
             });
-            return Text(todasLasSubRazas);
+            return Center(child: Text(todasLasSubRazas));
           }),
+          TextButton(
+              onPressed: () {
+                var bloc = context.read<BlocDogVerification>();
+                bloc.add(Creado());
+              },
+              child: const Text("Volver a pedir raza"))
         ],
       ),
     );
