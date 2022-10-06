@@ -9,4 +9,18 @@ void main() {
     act: (bloc) => bloc.add(Creado()),
     expect: () => [isA<SolicitandoRaza>()],
   );
+
+  blocTest<BlocDogVerification, Estado>(
+    'emite un nombre confirmado si encuentra el nombre',
+    build: () => BlocDogVerification(),
+    act: (bloc) => bloc.add(NombreRazaRecibido("akita")),
+    expect: () => [isA<MostrandoRazaConfirmada>()],
+  );
+
+  blocTest<BlocDogVerification, Estado>(
+    'emite un nombre no confirmado si no encuentra el nombre',
+    build: () => BlocDogVerification(),
+    act: (bloc) => bloc.add(NombreRazaRecibido("loquesea")),
+    expect: () => [isA<MostrandoRazaNoConfirmada>()],
+  );
 }
