@@ -3,7 +3,6 @@ import 'package:actividad_perrona/dominio/problemas.dart';
 import 'package:actividad_perrona/dominio/registro_raza.dart';
 import 'package:actividad_perrona/dominio/variable_raza.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:test/expect.dart';
 
 abstract class RepositorioVerificacion {
   Either<Problema, RegistroRaza> obtenerRegistroRaza(Raza raza);

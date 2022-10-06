@@ -1,4 +1,5 @@
 import 'package:actividad_perrona/caracteristicas/verificacion/bloc.dart';
+import 'package:actividad_perrona/caracteristicas/vistas/vista_mostrando_confirmado.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_solicitud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,9 @@ class Aplicacion extends StatelessWidget {
           }
           if (estado is SolicitandoRaza) {
             return const VistaSolicitudRaza();
+          }
+          if (estado is MostrandoRazaConfirmada) {
+            return VistaMostrandoRazaConfirmada(registro: estado.registroRaza);
           }
           return const Center(child: Text("No hay soporte para esta acción"));
         }),

@@ -1,5 +1,6 @@
 import 'package:actividad_perrona/caracteristicas/repositorio_verificacion.dart';
 import 'package:actividad_perrona/dominio/problemas.dart';
+import 'package:actividad_perrona/dominio/registro_raza.dart';
 import 'package:actividad_perrona/dominio/variable_raza.dart';
 import 'package:bloc/bloc.dart';
 
@@ -21,7 +22,11 @@ class Creandose extends Estado {}
 
 class SolicitandoRaza extends Estado {}
 
-class MostrandoRazaConfirmada extends Estado {}
+class MostrandoRazaConfirmada extends Estado {
+  final RegistroRaza registroRaza;
+
+  MostrandoRazaConfirmada(this.registroRaza);
+}
 
 class MostrandoRazaNoConfirmada extends Estado {
   final String nombreNoConfirmado;
@@ -49,7 +54,7 @@ class BlocDogVerification extends Bloc<Evento, Estado> {
             ? emit(MostrandoRazaNoConfirmada(event.razaAProcesar))
             : null;
       }, (r) {
-        emit(MostrandoRazaConfirmada());
+        emit(MostrandoRazaConfirmada(r));
       });
     });
   }

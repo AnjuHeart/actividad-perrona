@@ -91,7 +91,7 @@ void main() {
         ''';
     test("El modelo devuelve error", () {
       try {
-        final claseRaza = Model.fromJson(jsonString: json);
+        Model.fromJson(jsonString: json);
       } catch (e) {
         expect(e, isA<ProblemaFormatoJson>());
       }
