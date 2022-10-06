@@ -42,6 +42,9 @@ class _VistaSolicitudRazaState extends State<VistaSolicitudRaza> {
             ),
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
         TextButton(
             style: ButtonStyle(
               foregroundColor: _usuarioValidado

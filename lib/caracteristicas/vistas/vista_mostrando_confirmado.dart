@@ -12,15 +12,26 @@ class VistaMostrandoRazaConfirmada extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Se encontró la raza: ${registro.nombreRaza}"),
+          Text(
+            "Se encontró la raza: ${registro.nombreRaza}",
+            style: Theme.of(context).textTheme.headline4,
+          ),
           registro.subRazas.match((l) {
-            return Text(l);
+            return Text(
+              l,
+              style: Theme.of(context).textTheme.headline6,
+            );
           }, (r) {
             String todasLasSubRazas = "Tiene las siguientes subrazas:\n";
             r.forEach((element) {
               todasLasSubRazas += "$element\n";
             });
-            return Center(child: Text(todasLasSubRazas));
+            return Center(
+                child: Text(
+              todasLasSubRazas,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline6,
+            ));
           }),
           TextButton(
               onPressed: () {

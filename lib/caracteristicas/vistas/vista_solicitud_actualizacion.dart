@@ -11,7 +11,7 @@ class VistaSolicitudActualizacion extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Actualizate compaye",
+          Text("Solicitud incorrecta",
               style: Theme.of(context).textTheme.headline2),
           TextButton(
               onPressed: () {

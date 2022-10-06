@@ -11,7 +11,11 @@ class VistaMostrandoRazaNoEncontrada extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Center(child: Text("La raza: $raza no tiene registro")),
+        Center(
+            child: Text(
+          "La raza: $raza no tiene registro",
+          style: Theme.of(context).textTheme.headline4,
+        )),
         TextButton(
             onPressed: () {
               var bloc = context.read<BlocDogVerification>();
