@@ -29,8 +29,28 @@ class RepositorioPruebasVerificacion extends RepositorioVerificacion {
           "status": "success"
         }
         ''';
+    const String jSonIncorrecto = '''
+        {
+          "message": {
+            "akita": [],
+            "appenzeller": [],
+            "bulldog": [
+                "boston",
+                "english",
+                "french"
+            ],
+            "australian": [
+                "shepherd"
+            ]
+          },
+          "status": "failure"
+        }
+        ''';
     try {
-      final elementosJson = Model.fromJson(jsonString: jSonEjemplo);
+      var elementosJson = Model.fromJson(jsonString: jSonEjemplo);
+      if (raza.valor == 'incorrecto') {
+        elementosJson = Model.fromJson(jsonString: jSonIncorrecto);
+      }
       return elementosJson.jsonContieneRaza(raza.valor);
     } on Problema catch (e) {
       return Left(e);

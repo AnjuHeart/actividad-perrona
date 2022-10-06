@@ -23,4 +23,10 @@ void main() {
     act: (bloc) => bloc.add(NombreRazaRecibido("loquesea")),
     expect: () => [isA<MostrandoRazaNoConfirmada>()],
   );
+  blocTest<BlocDogVerification, Estado>(
+    'emite solicitud de actualizar api si hay un error',
+    build: () => BlocDogVerification(),
+    act: (bloc) => bloc.add(NombreRazaRecibido("incorrecto")),
+    expect: () => [isA<MostrandoSolicitudActualizacion>()],
+  );
 }
