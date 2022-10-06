@@ -6,7 +6,12 @@ class VistaCreandose extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text("Primera vista"),
-    );
+        child: SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:actividad_perrona/caracteristicas/verificacion/bloc.dart';
+import 'package:actividad_perrona/caracteristicas/vistas/vista_solicitud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:actividad_perrona/caracteristicas/vistas/vista_creandose.dart';
@@ -13,8 +14,11 @@ class BlocApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context){
+      create: (context) {
         BlocDogVerification blocDogVerification = BlocDogVerification();
+        Future.delayed(const Duration(seconds: 2), () {
+          blocDogVerification.add(Creado());
+        });
         return blocDogVerification;
       },
       child: const Aplicacion(),
@@ -30,10 +34,13 @@ class Aplicacion extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Builder(builder: (context){
+        body: Builder(builder: (context) {
           var estado = context.watch<BlocDogVerification>().state;
-          if(estado is EstadoCreado){
+          if (estado is Creandose) {
             return const VistaCreandose();
+          }
+          if (estado is SolicitandoRaza) {
+            return const VistaSolicitudRaza();
           }
           return const Center(child: Text("No hay soporte para esta acción"));
         }),
